@@ -5,7 +5,7 @@
 #include <hStreamDev.h>
 #include <hSystem.h>
 
-class hROSHardware {
+class hFrameworkHardware {
     hFramework::hStreamDev* device = nullptr;
   public:
     void init() {}
