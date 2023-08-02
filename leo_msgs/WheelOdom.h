@@ -15,10 +15,8 @@ namespace leo_msgs
     public:
       typedef ros::Time _stamp_type;
       _stamp_type stamp;
-      typedef float _velocity_lin_x_type;
-      _velocity_lin_x_type velocity_lin_x;
-      typedef float _velocity_lin_y_type;
-      _velocity_lin_y_type velocity_lin_y;
+      typedef float _velocity_lin_type;
+      _velocity_lin_type velocity_lin;
       typedef float _velocity_ang_type;
       _velocity_ang_type velocity_ang;
       typedef float _pose_x_type;
@@ -30,8 +28,7 @@ namespace leo_msgs
 
     WheelOdom():
       stamp(),
-      velocity_lin_x(0),
-      velocity_lin_y(0),
+      velocity_lin(0),
       velocity_ang(0),
       pose_x(0),
       pose_y(0),
@@ -55,23 +52,13 @@ namespace leo_msgs
       union {
         float real;
         uint32_t base;
-      } u_velocity_lin_x;
-      u_velocity_lin_x.real = this->velocity_lin_x;
-      *(outbuffer + offset + 0) = (u_velocity_lin_x.base >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (u_velocity_lin_x.base >> (8 * 1)) & 0xFF;
-      *(outbuffer + offset + 2) = (u_velocity_lin_x.base >> (8 * 2)) & 0xFF;
-      *(outbuffer + offset + 3) = (u_velocity_lin_x.base >> (8 * 3)) & 0xFF;
-      offset += sizeof(this->velocity_lin_x);
-      union {
-        float real;
-        uint32_t base;
-      } u_velocity_lin_y;
-      u_velocity_lin_y.real = this->velocity_lin_y;
-      *(outbuffer + offset + 0) = (u_velocity_lin_y.base >> (8 * 0)) & 0xFF;
-      *(outbuffer + offset + 1) = (u_velocity_lin_y.base >> (8 * 1)) & 0xFF;
-      *(outbuffer + offset + 2) = (u_velocity_lin_y.base >> (8 * 2)) & 0xFF;
-      *(outbuffer + offset + 3) = (u_velocity_lin_y.base >> (8 * 3)) & 0xFF;
-      offset += sizeof(this->velocity_lin_y);
+      } u_velocity_lin;
+      u_velocity_lin.real = this->velocity_lin;
+      *(outbuffer + offset + 0) = (u_velocity_lin.base >> (8 * 0)) & 0xFF;
+      *(outbuffer + offset + 1) = (u_velocity_lin.base >> (8 * 1)) & 0xFF;
+      *(outbuffer + offset + 2) = (u_velocity_lin.base >> (8 * 2)) & 0xFF;
+      *(outbuffer + offset + 3) = (u_velocity_lin.base >> (8 * 3)) & 0xFF;
+      offset += sizeof(this->velocity_lin);
       union {
         float real;
         uint32_t base;
@@ -131,25 +118,14 @@ namespace leo_msgs
       union {
         float real;
         uint32_t base;
-      } u_velocity_lin_x;
-      u_velocity_lin_x.base = 0;
-      u_velocity_lin_x.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
-      u_velocity_lin_x.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      u_velocity_lin_x.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
-      u_velocity_lin_x.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
-      this->velocity_lin_x = u_velocity_lin_x.real;
-      offset += sizeof(this->velocity_lin_x);
-      union {
-        float real;
-        uint32_t base;
-      } u_velocity_lin_y;
-      u_velocity_lin_y.base = 0;
-      u_velocity_lin_y.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
-      u_velocity_lin_y.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
-      u_velocity_lin_y.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
-      u_velocity_lin_y.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
-      this->velocity_lin_y = u_velocity_lin_y.real;
-      offset += sizeof(this->velocity_lin_y);
+      } u_velocity_lin;
+      u_velocity_lin.base = 0;
+      u_velocity_lin.base |= ((uint32_t) (*(inbuffer + offset + 0))) << (8 * 0);
+      u_velocity_lin.base |= ((uint32_t) (*(inbuffer + offset + 1))) << (8 * 1);
+      u_velocity_lin.base |= ((uint32_t) (*(inbuffer + offset + 2))) << (8 * 2);
+      u_velocity_lin.base |= ((uint32_t) (*(inbuffer + offset + 3))) << (8 * 3);
+      this->velocity_lin = u_velocity_lin.real;
+      offset += sizeof(this->velocity_lin);
       union {
         float real;
         uint32_t base;
@@ -198,7 +174,7 @@ namespace leo_msgs
     }
 
     virtual const char * getType() override { return "leo_msgs/WheelOdom"; };
-    virtual const char * getMD5() override { return "97856c4c35bc0146f6278cf5c5b30cff"; };
+    virtual const char * getMD5() override { return "5bb892afaf24a6d3bedf13c8fe986f2a"; };
 
   };
 
